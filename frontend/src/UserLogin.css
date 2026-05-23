@@ -1,0 +1,264 @@
+/* UserLogin.css */
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    padding: 20px;
+    font-family: "Inter", sans-serif;
+    color: white;
+}
+
+.main-container .card-box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1000px;
+    background: #000;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid #1a1a1a;
+    box-shadow: 0 12px 30px rgba(79, 70, 229, 0.6);
+}
+
+.main-container .left-panel {
+    flex: 1 1 340px;
+    position: relative;
+    background: linear-gradient(135deg, #6366f1, #22c55e);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 450px;
+}
+
+.main-container .noise-texture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://w3.org id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+.main-container .brand-header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.main-container .hero-text {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.main-container .hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+}
+
+.main-container .hero-desc {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 32px;
+    font-size: 15px;
+}
+
+.main-container .step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.main-container .step-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.main-container .active-step {
+    background: white;
+    color: black;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.main-container .step-num {
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.main-container .active-step .step-num {
+    background: black;
+    color: white;
+}
+
+.main-container .right-panel {
+    flex: 1 1 340px;
+    background: black;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-container .form-wrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.toast-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+    opacity: 0.98;
+    z-index: 9999;
+}
+
+.toast-message.success {
+    background: #22c55e;
+}
+
+.toast-message.error {
+    background: #ef4444;
+}
+
+.main-container .form-header-group {
+    margin-bottom: 32px;
+}
+
+.main-container .form-title {
+    color: white;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.main-container .form-desc {
+    color: #888;
+    font-size: 14px;
+}
+
+.main-container .social-btn-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.main-container .social-button {
+    flex: 1;
+    background: transparent;
+    border: 1px solid #333;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.main-container .divider-text {
+    display: flex;
+    align-items: center;
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 24px;
+}
+
+.main-container .divider-text::before,
+.main-container .divider-text::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #333;
+    margin: 0 16px;
+}
+
+.main-container .input-box {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.main-container .input-label {
+    display: block;
+    color: #ccc;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.main-container .input-field {
+    width: 100%;
+    background: #121212;
+    border: 1px solid #1a1a1a;
+    padding: 14px;
+    border-radius: 8px;
+    color: white;
+    outline: none;
+    font-size: 14px;
+}
+
+.main-container .hint-text {
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 24px;
+}
+
+.main-container .submit-button {
+    width: 100%;
+    background: white;
+    color: black;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.main-container .footer-text {
+    text-align: center;
+    margin-top: 24px;
+    color: #888;
+    font-size: 13px;
+}
+
+.main-container .footer-text a {
+    color: white;
+    text-decoration: none;
+}

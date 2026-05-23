@@ -1,0 +1,95 @@
+:root {
+  /* This matches the bright neon green to cyan transition */
+  --primary-gradient: linear-gradient(90deg, #4ade80 0%, #2dd4bf 50%, #3b82f6 100%);
+  --sidebar-bg: #0f172a; /* Deep navy background */
+}
+
+/* Transaction History specific styles only - layout inherited from Dashboard.css */
+
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.control-group label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.control-group input, .control-group select {
+  padding: 12px;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: white;
+  outline: none;
+}
+
+.reset-button {
+  align-self: end;
+  justify-self: start;
+  border-radius: 16px;
+  padding: 13px 24px;
+}
+
+.table-wrap {
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+th {
+  text-align: left;
+  padding: 10px 20px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+td {
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 14px;
+}
+
+td:first-child { border-radius: 12px 0 0 12px; }
+td:last-child { border-radius: 0 12px 12px 0; }
+
+tr:hover td {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.text-right { text-align: right; }
+.text-muted { opacity: 0.5; font-family: monospace; font-size: 12px; }
+.amount { font-weight: 600; }
+.amount.negative { color: #fca5a5; }
+.amount.positive { color: #86efac; }
+
+.btn-primary.active-filter {
+  background: var(--primary-gradient);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
