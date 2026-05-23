@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API_URL from './api';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
@@ -26,7 +27,7 @@ const Login = ({ setToken, setRole, setData, setActiveRole }) => {
       localStorage.removeItem('adminToken');
       localStorage.removeItem('adminRole');
       localStorage.removeItem('adminData');
-      const res = await axios.post('http://localhost:5000/api/auth/admin-login', { 
+      const res = await axios.post(`${API_URL}/api/auth/admin-login`, { 
         identifier, 
         password 
       });

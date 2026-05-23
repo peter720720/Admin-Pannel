@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import axios from 'axios';
+import API_URL from './api';
 
 import MyBankDashboard from "./pages/Dashboard";
 import PaymentTransfer from "./pages/PaymentTransfer";
@@ -28,7 +29,7 @@ function App() {
     if (!token) return false;
 
     try {
-      const response = await axios.get('http://localhost:5000/api/auth/me', {
+      const response = await axios.get(`${API_URL}/api/auth/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

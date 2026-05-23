@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from './api';
 
 const AdminDashboard = () => {
     const [users, setUsers] = useState([]);
@@ -30,7 +31,7 @@ const AdminDashboard = () => {
                 console.error('No token found in localStorage');
                 return;
             }
-            const res = await axios.get('http://localhost:5000/api/admin/users', {
+            const res = await axios.get(`${API_URL}/api/admin/users`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const fetchedUsers = res.data.users || res.data;
@@ -56,7 +57,7 @@ const AdminDashboard = () => {
             const fName = parts[0];
             const lName = parts.length > 1 ? parts.slice(1).join(' ') : '  ';
 
-            await axios.post('http://localhost:5000/api/admin/create-user',
+            await axios.post(`${API_URL}/api/admin/create-user`,
                 { firstName: fName, lastName: lName, email, password },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -74,7 +75,7 @@ const AdminDashboard = () => {
 
         try {
             const token = localStorage.getItem('adminToken');
-            await axios.delete(`http://localhost:5000/api/admin/users/${userId}`, {
+            await axios.delete(`${API_URL}/api/admin/users/${userId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             showMessage('User deleted successfully', 'success');
@@ -93,7 +94,7 @@ const AdminDashboard = () => {
 
         try {
             const token = localStorage.getItem('adminToken');
-            const response = await axios.post('http://localhost:5000/api/admin/adjust-balance',
+            const response = await axios.post(`${API_URL}/api/admin/adjust-balance`,
                 { userId, amount: 100, type: 'add', description: 'Quick add $100' },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -115,7 +116,7 @@ const AdminDashboard = () => {
 
         try {
             const token = localStorage.getItem('adminToken');
-            const response = await axios.post('http://localhost:5000/api/admin/adjust-balance', {
+            const response = await axios.post(`${API_URL}/api/admin/adjust-balance`, {
                 userId: transaction.userId,
                 amount: transaction.amount,
                 type: transaction.type === 'Deposit' ? 'add' : 'deduct',

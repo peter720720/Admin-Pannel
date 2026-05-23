@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../api';
 import './Dashboard.css';
 import { maskAccountNumber } from '../utils/account';
 
@@ -21,7 +22,7 @@ const MyBankDashboard = ({ onLogout, user }) => {
         const token = localStorage.getItem('userToken');
         if (!token) return;
 
-        const response = await axios.get('http://localhost:5000/api/auth/me', {
+        const response = await axios.get(`${API_URL}/api/auth/me`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUserData(response.data.user);
