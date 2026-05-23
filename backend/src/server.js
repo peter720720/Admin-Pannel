@@ -17,11 +17,17 @@ dotenv.config();
 const app = express();
 
 // Middleware
+const clientOrigins = ((process.env.CLIENT_URL || process.env.CLIENT_URLS || "") + "")
+  .split(',')
+  .map(url => url.trim())
+  .filter(Boolean);
+
 const allowedLocalOrigins = [
-  process.env.CLIENT_URL || 'http://localhost:5173',
-  'http://localhost:5175',
-  'http://127.0.0.1:5173',
-  'http://127.0.0.1:5175'
+  ...clientOrigins,
+  "http://localhost:5173",
+  "http://localhost:5175",
+  "http://127.0.0.1:5173",
+  "http://127.0.0.1:5175"
 ];
 
 app.use(cors({
