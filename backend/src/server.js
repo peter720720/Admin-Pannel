@@ -17,30 +17,22 @@ dotenv.config();
 const app = express();
 
 // Middleware
-const clientOrigins = ((process.env.CLIENT_URL || process.env.CLIENT_URLS || "") + "")
-  .split(',')
-  .map(url => url.trim())
-  .filter(Boolean);
-
-const allowedLocalOrigins = [
-  ...clientOrigins,
-  "http://localhost:5173",
-  "http://localhost:5175",
-  "http://127.0.0.1:5173",
-  "http://127.0.0.1:5175"
-];
+// Middleware
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:5175',
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:5175',
+  ...(process.env.CLIENT_URL ? [process.env.CLIENT_URL] : []),
+  ...(process.env.CLIENT_URLS ? process.env.CLIENT_URLS.split(',').map(url => url.trim()) : []),
+  ...(process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',').map(url => url.trim()) : [])
+].filter(Boolean);
 
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // allow non-browser requests like Postman
-    if (allowedLocalOrigins.includes(origin) || /^https?:\/\/localhost:\d+$/.test(origin) || /^https?:\/\/127\.0\.0\.1:\d+$/.test(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error('CORS policy: origin not allowed'), false);
-  },
+  origin: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
-})); 
+}));
 
 app.use(express.json());
 
