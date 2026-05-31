@@ -84,32 +84,6 @@ export const adminLogin = async (req, res) => {
   }
 };
 
-// // Get Current User Info
-// export const getCurrentUser = async (req, res) => {
-//   try {
-//     const user = await User.findById(req.user.id).select('-password');
-//     res.json(user);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
-
-
-// Get Current User Info (with balance)
-// export const getCurrentUser = async (req, res) => {
-//   try {
-//     // This finds the user using the ID stored in the JWT token
-//     const user = await User.findById(req.user.id).select('-password'); 
-    
-//     if (!user) return res.status(404).json({ message: "User not found" });
-
-//     // This will now include the balance, firstName, lastName, etc.
-//     res.json(user);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
-
 export const getCurrentUser = async (req, res) => {
   try {
     // This will now include the balance because it's in your Model

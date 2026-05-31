@@ -454,26 +454,31 @@ const AdminDashboard = ({ onLogout }) => {
 
     useEffect(() => { fetchUsers(); }, []);
 
-    const handleCreateUser = async (e) => {
-        e.preventDefault();
-        try {
-            const token = localStorage.getItem('adminToken');
-            const parts = fullName.trim().split(' ');
-            const fName = parts;
-            const lName = parts.length > 1 ? parts.slice(1).join(' ') : '  ';
+   const handleCreateUser = async (e) => {
+    e.preventDefault();
+    try {
+        const token = localStorage.getItem('adminToken');
+        const parts = fullName.trim().split(' ');
+        
+        // ✅ FIXED: Grab index [0] to make sure it's a single string
+        const fName = parts[0]; 
+        // ✅ FIXED: Fallback to an empty string instead of double spaces '  '
+        const lName = parts.length > 1 ? parts.slice(1).join(' ') : ''; 
 
-            await axios.post(`${API_URL}/api/admin/create-user`,
-                { firstName: fName, lastName: lName, email, password },
-                { headers: { Authorization: `Bearer ${token}` } }
-            );
+        // Also note: The URL route endpoint on your browser screen was /api/admin/create_user
+        // Double-check if your route is written with a dash (-) or an underscore (_)
+        await axios.post(`${API_URL}/api/admin/create-user`,
+            { firstName: fName, lastName: lName, email, password },
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
 
-            showMessage('User created successfully!', 'success');
-            setFullName(''); setEmail(''); setPassword('');
-            await fetchUsers();
-        } catch (err) {
-            showMessage('Error: ' + (err.response?.data?.message || 'Failed to create user'), 'error');
-        }
-    };
+        showMessage('User created successfully!', 'success');
+        setFullName(''); setEmail(''); setPassword('');
+        await fetchUsers();
+    } catch (err) {
+        showMessage('Error: ' + (err.response?.data?.message || 'Failed to create user'), 'error');
+    }
+};
 
     const handleDeleteUser = async (userId) => {
         if (!window.confirm('Delete this user?')) return;
